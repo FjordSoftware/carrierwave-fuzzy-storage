@@ -26,9 +26,8 @@ class Attachment < ApplicationRecord
   include CarrierWave::FuzzyStorage::ActiveRecordSupport.new('aws', :file)
 
   mount_uploader :file, AttachmentUploader
+end
 ```
-
-Including CarrierWave::FuzzyStorage::ActiveRecordSupport is optional.
 
 Your models need to respond to #file_storage method (note that file is the name
 of attribute on which uploader is mounted).
@@ -37,6 +36,9 @@ Carrierwave fuzzy storage doesn't support moving files between storages, yet.
 Currently it only supports storing files on various storages supported by carrier wave (s3/file).
 This allows some files to be kept on disk while some files being kept in s3.
 
+
+Including CarrierWave::FuzzyStorage::ActiveRecordSupport is optional. First
+argument is default storage and all other arguments are uploader mounts.
 
 ## TODO
 
